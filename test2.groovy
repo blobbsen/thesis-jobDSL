@@ -1,4 +1,4 @@
-job('DSL-Tutorial-2-Test') {
+job('job_DSL/DSL-Tutorial-2-Test') {
     scm {
         git('git://github.com/jgritman/aws-sdk-test.git')
     }
