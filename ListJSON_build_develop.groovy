@@ -18,7 +18,7 @@ job('banch_develop_test/ListJSON_build_develop') {
               }
         }
 
-        sh('''
+        shell('''
               export PATH=${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools
               ls -al
               tar -xzvf ListJSON.tgz && rm ListJSON.tgz
@@ -44,7 +44,7 @@ job('banch_develop_test/ListJSON_build_develop') {
       androidLint('*lint.xml')
       archiveArtifacts('*.apk')
       archiveArtifacts('*.xml')
-      buildPipelineTrigger('branch_develop_test/ListJSON_unit-test, branch_develop_test/ListJSON_monkey_device', branch_develop_test/ListJSON_overview_debug)
+      //buildPipelineTrigger('branch_develop_test/ListJSON_unit-test, branch_develop_test/ListJSON_monkey_device', branch_develop_test/ListJSON_overview_debug)
   }
 
 }
