@@ -1,0 +1,51 @@
+job('banch_develop_test/ListJSON_overview_develop') {
+
+    label('git')
+
+    logRotator {
+      numToKeep(30)
+      artifactNumToKeep(10)
+    }
+
+    steps {
+
+        copyArtifacts('branch_develop_test/ListJSON_build_develop') {
+              includePatterns('*.xml')
+              targetDirectory('.')
+              flatten()
+              buildSelector {
+                  latestSaved()
+              }
+        }
+
+        copyArtifacts('branch_develop_test/ListJSON_unit-test') {
+              includePatterns('*.xml')
+              targetDirectory('.')
+              flatten()
+              buildSelector {
+                  latestSaved()
+              }
+        }
+
+        copyArtifacts('branch_develop_test/ListJSON_monkey_device') {
+              includePatterns('*.txt')
+              targetDirectory('.')
+              flatten()
+              buildSelector {
+                  latestSaved()
+              }
+        }
+
+        shell('echo $(cat junit-report.xml) > junit-report-fresh.xml')
+    }
+
+    publishers {
+      archiveArtifacts('*.xml')
+      archiveArtifacts('*.txt')
+
+      archiveJunit('junit-report-fresh.xml')
+      androidLint('*lint.xml')
+
+  }
+
+}

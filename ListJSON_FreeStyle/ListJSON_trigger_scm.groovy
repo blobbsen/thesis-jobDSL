@@ -8,8 +8,14 @@ job('banch_develop_test/ListJSON_trigger_scm') {
     }
 
     scm {
-         github('blobbsen/thesis-ListJSON.git','*/develop')
-    }
+         git {
+             remote {
+                 github('blobbsen/thesis-ListJSON', 'ssh')
+                 credentials('blobbsen_jenkins')
+             }
+           	branch('develop')
+         }
+     }
 
     steps {
 
