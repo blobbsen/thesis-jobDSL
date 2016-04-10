@@ -42,9 +42,13 @@ job('banch_develop_test/ListJSON_build_develop') {
 
     publishers {
       androidLint('*lint.xml')
+
       archiveArtifacts('*.apk')
       archiveArtifacts('*.xml')
-      //buildPipelineTrigger('branch_develop_test/ListJSON_unit-test, branch_develop_test/ListJSON_monkey_device', branch_develop_test/ListJSON_overview_debug)
+
+      downstream('branch_develop_test/ListJSON_monkey_device', 'SUCCESS')
+      downstream('branch_develop_test/ListJSON_unit-test', 'SUCCESS')
+      downstream('branch_develop_test/ListJSON_overview_debug', 'SUCCESS')
   }
 
 }
