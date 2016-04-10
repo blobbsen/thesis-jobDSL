@@ -1,4 +1,4 @@
-job('banch_develop_test/ListJSON_build_develop') {
+job('banch_develop_test/ListJSON_trigger_scm') {
 
     label('git')
 
@@ -13,7 +13,7 @@ job('banch_develop_test/ListJSON_build_develop') {
 
     steps {
 
-        sh('''
+        shell('''
               tar -zcvf ListJSON.tgz ListJSON
               tar -zcvf ListJSONtest.tgz ListJSONtest
 
@@ -21,10 +21,10 @@ job('banch_develop_test/ListJSON_build_develop') {
               rm -rf ListJSON/
               rm -rf ListJSONtest/
         '''.stripIndent())
-
     }
 
     publishers {
       archiveArtifacts('*.tgz')
-      buildPipelineTrigger('branch_develop_test/ListJSON_build_develop)
-  }
+      downstream('branch_develop_test/ListJSON_build_develop', 'SUCCESS')
+    }
+}
