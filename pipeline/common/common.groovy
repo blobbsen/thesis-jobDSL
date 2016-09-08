@@ -7,6 +7,7 @@ def hello(whom) {
 }
 
 def wholeMasterStep() {
+stage 'testDat'
 node('master') {
   sh 'injected via common.groovy'
 }
