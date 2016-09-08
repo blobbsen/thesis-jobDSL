@@ -1,5 +1,5 @@
 { ->
- echo 'loading common.groovy' to make steps available within this pipeline'
+ echo 'loading common.groovy to make steps available within this pipeline'
 }
 
 def hello(whom) {
