@@ -3,13 +3,13 @@
 }
 
 def hello(whom) {
-  sh 'echo "hallo"'
+  sh "echo \"hallo\""
 }
 
 def wholeMasterStep() {
   stage 'testDat'
   node('master') {
-    sh "echo "hello world"'
+    sh 'echo "hello world"'
   }
 }
 
