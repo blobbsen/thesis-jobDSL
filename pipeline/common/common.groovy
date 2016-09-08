@@ -3,7 +3,7 @@
 }
 
 def hello(whom) {
-  sh "echo \"hallo\""
+  sh "echo \"${whom}\""
 }
 
 def wholeMasterStep() {
