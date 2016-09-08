@@ -7,15 +7,13 @@ def projectDir = 'thesis-jobDSL/pipeline/'
 File dir = new File("${WORKSPACE}/${projectDir}")
 
 dir.eachFile { pipeline ->
-  
-  if (!pipeline.isDirectory() && pipeline.name.endsWith('.groovy') ) {
+  // TODO: check if "if" is necessary in fact of using eachFile
+  if (!pipeline.isDirectory() ) {
 
-    //String pipelineConfig = ${new File(pipeline.name.replace('.groovy', '.config')).getText('UTF-8')}
- 
-    pipelineJob(pipeline.name.replace('.groovy', '')) {
-      // injecting ${pipeline}.settings
-      //"${pipelineConfig}"
-      // loading ${pipeline}.groovy
+    String pipelineConfig = new File("${WORKSPACE}/thesis-jobDSL/pipeline/${pipeline.name.replace('.groovy', '.config')}").getText('UTF-8')
+
+    pipelineJob("${pipeline.name.replace('.groovy', '')}") {
+      //injectConfig(pipelineConfig)
       definition {
           cps {
             script(readFileFromWorkspace("${projectDir}/${pipeline.name}"))
@@ -24,4 +22,8 @@ dir.eachFile { pipeline ->
       }
     }
   }
+}
+
+def injectConfig(config) {
+	config
 }
