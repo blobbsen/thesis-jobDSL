@@ -9,7 +9,7 @@ def hello(whom) {
 def wholeMasterStep() {
 stage 'testDat'
 node('master') {
-  sh "hello world"
+  sh 'echo "hello world"'
 }
 }
 
