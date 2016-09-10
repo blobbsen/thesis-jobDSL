@@ -1,4 +1,4 @@
-pipelineJob('example_2') {
+pipelineJob('dslTestFolder/example_2') {
     	description('uffda')
 	definition {
         cps {
