@@ -1,5 +1,5 @@
 pipelineJob('example') {
-    	description = 'uffda'
+    	description('uffda')
 	definition {
         cps {
             script('''
